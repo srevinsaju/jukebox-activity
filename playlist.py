@@ -93,6 +93,12 @@ class PlayList(Gtk.ScrolledWindow):
 
     def move_up(self):
         selected_iter = self.selection.get_selected()[1]
+        # check if song exists at previous iteration
+        if selected_iter is None \
+                or self.treemodel.iter_previous(self.treemodel.get_iter(
+                    int(str(self.treemodel.get_path(selected_iter))))) is None:
+                    return
+
         position = self.treemodel.get_iter(
             int(str(self.treemodel.get_path(selected_iter))) - 1)
         self.treemodel.move_before(selected_iter, position)
@@ -108,6 +114,12 @@ class PlayList(Gtk.ScrolledWindow):
 
     def move_down(self):
         selected_iter = self.selection.get_selected()[1]
+        # check if song exists at next iteration
+        if selected_iter is None \
+                or self.treemodel.iter_next(self.treemodel.get_iter(
+                    int(str(self.treemodel.get_path(selected_iter))))) is None:
+                    return
+
         position = self.treemodel.get_iter(
             int(str(self.treemodel.get_path(selected_iter))) + 1)
         self.treemodel.move_after(selected_iter, position)
