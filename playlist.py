@@ -97,7 +97,7 @@ class PlayList(Gtk.ScrolledWindow):
         if selected_iter is None \
                 or self.treemodel.iter_previous(self.treemodel.get_iter(
                     int(str(self.treemodel.get_path(selected_iter))))) is None:
-                    return
+            return
 
         position = self.treemodel.get_iter(
             int(str(self.treemodel.get_path(selected_iter))) - 1)
@@ -118,7 +118,7 @@ class PlayList(Gtk.ScrolledWindow):
         if selected_iter is None \
                 or self.treemodel.iter_next(self.treemodel.get_iter(
                     int(str(self.treemodel.get_path(selected_iter))))) is None:
-                    return
+            return
 
         position = self.treemodel.get_iter(
             int(str(self.treemodel.get_path(selected_iter))) + 1)
